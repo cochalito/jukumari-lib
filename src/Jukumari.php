@@ -8,8 +8,9 @@ class Jukumari
     public function getInformation()
     {
         return array(
-            'Team' => 'Jukumari',
-            'Author' => 'Brayan Pereyra'
+            'Team' => 'Jukumari PS',
+            'Author' => 'Brayan Pereyra (Cochalo)',
+            'Country' => 'BOL'
         );
     }
 }
