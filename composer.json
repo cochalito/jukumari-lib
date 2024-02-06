@@ -1,0 +1,24 @@
+{
+    "name": "jukumari/jukumari-lib",
+    "description": "Description",
+    "type": "library",
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "phpseclib/phpseclib": "^3.0",
+        "phroute/phroute": "^2.2",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jukumari\\JukumariLib\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Brayan Pereyra",
+            "email": "brayan@processmaker.com"
+        }
+    ],
+    "minimum-stability": "alpha"
+}
