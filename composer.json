@@ -15,7 +15,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Jukumari\\JukumariLib\\": "src/"
+            "JukumariLib\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JukumariLib\\": "src/"
         }
     },
     "authors": [
