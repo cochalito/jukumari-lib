@@ -2,10 +2,9 @@
     "name": "cochalito/jukumari-lib",
     "description": "Description",
     "type": "library",
-    "keywords" : {
-        "jukumari",
-        "php"
-    }
+    "keywords" : [
+        "jukumari"
+    ],
     "require": {
         "phpmailer/phpmailer": "^6.9",
         "phpseclib/phpseclib": "^3.0",
