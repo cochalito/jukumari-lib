@@ -1,6 +1,6 @@
 <?php
 
-namespace JukumariLib\Classes;
+namespace JukumariLib;
 
 
 class Jukumari
