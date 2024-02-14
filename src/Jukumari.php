@@ -2,15 +2,15 @@
 
 namespace JukumariLib;
 
-
 class Jukumari
 {
     public function getInformation()
     {
         return array(
             'Team' => 'Jukumari PS',
-            'Author' => 'Brayan Pereyra (Cochalo)',
-            'Country' => 'BOL'
+            'Author' => 'Ronald Rodriguez',
+            'Country' => 'BOL',
+            'Projet' => 'Thermo Fisher'
         );
     }
 }
