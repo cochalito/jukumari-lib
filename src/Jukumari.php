@@ -7,10 +7,10 @@ class Jukumari
     public function getInformation()
     {
         return array(
-            'Team' => 'Jukumari PS',
-            'Author' => 'Ronald Rodriguez',
-            'Country' => 'BOL',
-            'Projet' => 'Thermo Fisher'
+            'Team' => 'Jukumari Team PS',
+            'Author' => 'Edgardo Silva',
+            'Country' => 'BOLIVIA',
+            'Projet' => 'Madison Projet'
         );
     }
 }
