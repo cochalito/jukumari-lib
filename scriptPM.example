@@ -1,0 +1,14 @@
+<?php
+
+use ProcessMaker\JukumariLib\Jukumari;
+
+require_once 'vendor/autoload.php';
+
+$jukumari = new Jukumari();
+$return = $jukumari->getInformation();
+
+
+$jukumari = new Jukumari();
+$return = $jukumari->getApi();
+
+return $return;
