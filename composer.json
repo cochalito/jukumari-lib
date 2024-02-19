@@ -1,7 +1,7 @@
 {
     "name": "cochalito/jukumari-lib",
-    "version": "v1.0.7",
-    "description": "Description",
+    "version": "v1.0.8",
+    "description": "Base library for jukumari projects",
     "type": "library",
     "keywords" : [
         "jukumari"
@@ -15,12 +15,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "JukumariLib\\": "src/"
+            "ProcessMaker\\JukumariLib\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JukumariLib\\": "src/"
+            "ProcessMaker\\JukumariLib\\": "src/"
         }
     },
     "authors": [

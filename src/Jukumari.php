@@ -1,16 +1,14 @@
 <?php
 
-namespace JukumariLib;
+namespace ProcessMaker\JukumariLib;
 
 class Jukumari
 {
     public function getInformation()
     {
         return array(
-            'Team' => 'Jukumari Team PS',
-            'Author' => 'Edgardo Silva',
-            'Country' => 'BOLIVIA',
-            'Projet' => 'Madison Projet'
+            'Team' => 'Jukumari Team',
+            'Author' => 'Brayan Pereyra (Cochalo)'
         );
     }
 }
