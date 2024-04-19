@@ -2,7 +2,7 @@
 
 namespace ProcessMaker\JukumariLib;
 
-use ProcessMaker\JukumariLib\Classes\Api;
+use ProcessMaker\JukumariLib\Classes\Jira;
 
 class Jukumari
 {
@@ -17,9 +17,14 @@ class Jukumari
         return $return;
     }
 
-    public function getApi()
+    public function createTickets($dataTickets)
     {
-        $api = new Api();
-        return $api->executeApi();
+        $jira = new Jira();
+        $response = array();
+        foreach ($dataTickets as $ticket) {
+            $response[] = $jira->createTicket($ticket);
+        }
+        die('111111');
+        return $response;
     }
 }
