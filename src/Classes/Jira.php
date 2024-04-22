@@ -31,9 +31,7 @@ class Jira extends CallApi
     {
         try {
             $dataTicket = (array)$dataTicket;
-            //$description = $this->createTemplateDescription($dataTicket['description']);
-            $description = $dataTicket['description'];
-            return $description;
+            $description = $this->createTemplate($dataTicket['description']);
             $dataTicket = array(
                 'fields' => array(
                     'project'       => array('id' => (int)$dataTicket['project']),
@@ -50,7 +48,6 @@ class Jira extends CallApi
                 'data4' => $this->pass
                 
             );
-            return $return;
             $resp = $this->postTicket($dataTicket);
             return $resp;
         } catch (Exception $error) {
@@ -58,12 +55,28 @@ class Jira extends CallApi
         }
     }
 
-    public function createTemplateDescription($description)
+    public function createTemplate($description)
     {
         try {
-            return $description;
+            $body = '* Ticket created By Jukumari Process *';
+            //$description .= "\n" . 'Project: *' . $dataTicket['PRO_BASECAMP_NAME'] . '*';
+            //$description .= "\n" . 'Reporter: *' . $dataTicket['TIC_BASECAMP_AUTHOR_NAME'] . '*';
+            $body .= "\n\n" . $description;
+
+            /*
+            $link  = 'https://colosa.basecamphq.com/projects/' . $dataTicket['PRO_BASECAMP_ID'];
+            $link .= '/posts/' . $dataTicket['TIC_BASECAMP_ID'] . '/comments';
+            */
+
+            $leads = '[Edgardo Silva|~accountid:557058:db398c98-5767-4b05-bf20-0788e8d0bc44] ';
+            $leads .= '[Brayan Pereyra|~accountid:557058:ee888405-8b48-4b4a-89b6-6fd31f0bb9ae] ';
+            $leads .= '[Ronald Rodriguez|~accountid:5ada0fbfba41192e23d7c49a]';
+
+            //$description .= "\n\n" . 'BaseCamp Link: ' . $link;
+            $body .= "\n\n" . 'cc: ' . $leads;
+            return $body;
         } catch (Exception $error) {
-            exit('An error occurred in the execution of function Jira::createTemplateDescription => ' . $error->getMessage());
+            exit('An error occurred in the execution of function Jira::createTemplate => ' . $error->getMessage());
         }
     }
 
