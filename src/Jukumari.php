@@ -25,6 +25,7 @@ class Jukumari
             $response = array();
             foreach ($dataTickets as $ticket) {
                 $response[] = $jira->createTicket($ticket);
+                return $response;
             }
             return $response;
         } catch (Exception $error) {

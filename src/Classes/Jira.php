@@ -15,6 +15,7 @@ class Jira extends CallApi
     public function __construct($dataJira = array())
     {
         try {
+
             $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
             $dotenv->load();
 
@@ -29,6 +30,7 @@ class Jira extends CallApi
     public function createTicket($dataTicket)
     {
         try {
+            return 'Holasssss';
             $description = $this->createTemplate($dataTicket['description']);
             $dataTicket = array(
                 'fields' => array(
