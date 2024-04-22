@@ -24,7 +24,6 @@ class Jukumari
         foreach ($dataTickets as $ticket) {
             $response[] = $jira->createTicket($ticket);
         }
-        die('111111');
         return $response;
     }
 }

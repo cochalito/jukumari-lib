@@ -4,18 +4,22 @@ namespace ProcessMaker\JukumariLib\Classes;
 
 use ProcessMaker\JukumariLib\Classes\CallApi;
 use \Exception;
+use Dotenv\Dotenv;
 
 class Jira extends CallApi
 {
-    public $server = 'processmaker.atlassian.net';
-    public $user = 'brayan@processmaker.com';
-    public $pass = 'eDm67yx9HS0SsXw7mfioB2FA';
+    public $server;
+    public $user;
+    public $pass;
 
     public function __construct($dataJira = array())
     {
-        $this->server = $dataJira['SERVER'] ?? $this->server;
-        $this->user = $dataJira['JIRA_USER'] ?? $this->user;
-        $this->pass = $dataJira['JIRA_PASS'] ?? $this->pass;
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+
+        $this->server = $_ENV['JIRA_SERVER'];
+        $this->user = $_ENV['JIRA_USER'];
+        $this->pass = $_ENV['JIRA_PASS'];
     }
 
     public function createTicket($dataTicket)
@@ -23,7 +27,7 @@ class Jira extends CallApi
         $description = $this->createTemplate($dataTicket['description']);
         $dataTicket = array(
             'fields' => array(
-                'project'       => array('id' => $dataTicket['project']),
+                'project'       => array('id' => (int)$dataTicket['project']),
                 'summary'       => $dataTicket['summary'],
                 'description'   => $description,
                 'issuetype'     => array('name' => 'Task'),
