@@ -59,16 +59,7 @@ class Jira extends CallApi
     public function createTemplateDescription($description)
     {
         try {
-            $body = '* Ticket created By Jukumari Process *';
-            $body .= "\n\n" . $description;
-/*
-            $leads = '[Edgardo Silva|~accountid:557058:db398c98-5767-4b05-bf20-0788e8d0bc44] ';
-            $leads .= '[Brayan Pereyra|~accountid:557058:ee888405-8b48-4b4a-89b6-6fd31f0bb9ae] ';
-            $leads .= '[Ronald Rodriguez|~accountid:5ada0fbfba41192e23d7c49a]';
-
-            $body .= "\n\n" . 'cc: ' . $leads;
-            */
-            return $body;
+            return $description;
         } catch (Exception $error) {
             exit('An error occurred in the execution of function Jira::createTemplateDescription => ' . $error->getMessage());
         }
