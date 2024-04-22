@@ -30,7 +30,8 @@ class Jira extends CallApi
     public function createTicket($dataTicket)
     {
         try {
-            $description = $this->createTemplateDescription($dataTicket['description']);
+            //$description = $this->createTemplateDescription($dataTicket['description']);
+            $description = $dataTicket['description'];
             return $description;
             $dataTicket = array(
                 'fields' => array(
