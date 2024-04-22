@@ -23,11 +23,10 @@ class Jukumari
         try {
             $jira = new Jira();
             $response = array();
-            return $dataTickets;
             foreach ($dataTickets as $ticket) {
                 $response[] = $jira->createTicket($ticket);
             }
-        return $response;
+            return $response;
         } catch (Exception $error) {
             exit('An error occurred in the execution of function Jukumari::createTickets =>' . $error->getMessage());
         }
