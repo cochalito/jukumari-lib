@@ -3,6 +3,7 @@
 namespace ProcessMaker\JukumariLib;
 
 use ProcessMaker\JukumariLib\Classes\Jira;
+use \Exception;
 
 class Jukumari
 {
@@ -19,11 +20,15 @@ class Jukumari
 
     public function createTickets($dataTickets)
     {
-        $jira = new Jira();
-        $response = array();
-        foreach ($dataTickets as $ticket) {
-            $response[] = $jira->createTicket($ticket);
-        }
+        try {
+            $jira = new Jira();
+            $response = array();
+            foreach ($dataTickets as $ticket) {
+                $response[] = $jira->createTicket($ticket);
+            }
         return $response;
+        } catch (Exception $error) {
+            exit('An error occurred in the execution of function Jukumari::createTickets =>' . $error->getMessage());
+        }
     }
 }
