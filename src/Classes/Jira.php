@@ -39,6 +39,14 @@ class Jira extends CallApi
                     'assignee'      => array('id' => $dataTicket['assignee'])
                 )
             );
+            $return = array(
+                'data1' => $dataTicket,
+                'data2' => $this->server,
+                'data3' => $this->user,
+                'data4' => $this->pass
+                
+            );
+            return $return;
             $resp = $this->postTicket($dataTicket);
             return $resp;
         } catch (Exception $error) {

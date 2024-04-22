@@ -1,6 +1,6 @@
 {
     "name": "cochalito/jukumari-lib",
-    "version": "v1.0.13",
+    "version": "v1.0.14",
     "description": "Base library for jukumari projects",
     "type": "library",
     "keywords" : [
