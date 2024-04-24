@@ -38,15 +38,9 @@ class Jira extends CallApi
                     'summary'       => $dataTicket['summary'],
                     'description'   => $description,
                     'issuetype'     => array('name' => 'Task'),
-                    'assignee'      => array('id' => $dataTicket['assignee'])
+                    'assignee'      => array('id' => $dataTicket['assignee']),
+                    'timetracking'  => array('originalEstimate' => $dataTicket['hours'], 'remainingEstimate' => '0h')
                 )
-            );
-            $return = array(
-                'data1' => $dataTicket,
-                'data2' => $this->server,
-                'data3' => $this->user,
-                'data4' => $this->pass
-                
             );
             $resp = $this->postTicket($dataTicket);
             return $resp;
@@ -58,7 +52,7 @@ class Jira extends CallApi
     public function createTemplate($description)
     {
         try {
-            $body = '* Ticket created By Jukumari Process *';
+            $body = " \n{color:#6554C0}*[ Ticket created By Jukumari Process ]*{color}";
             //$description .= "\n" . 'Project: *' . $dataTicket['PRO_BASECAMP_NAME'] . '*';
             //$description .= "\n" . 'Reporter: *' . $dataTicket['TIC_BASECAMP_AUTHOR_NAME'] . '*';
             $body .= "\n\n" . $description;

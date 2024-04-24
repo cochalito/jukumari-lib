@@ -8,18 +8,18 @@ require_once 'vendor/autoload.php';
 $test = array(
     array(
         'create' => true,
-        'project' => "15419",
-        'summary' => "DESDE SCRIPT test 100",
-        'description' => "DESDE SCRIPT test 100 des",
-        'assignee' => "557058:ee888405-8b48-4b4a-89b6-6fd31f0bb9ae",
+        'project' => "15773",
+        'summary' => "Reunion semanal con el cliente",
+        'description' => "Reunion semanal con el cliente",
+        'assignee' => "5d35deb94fa5500c42b699ff",
         'hours' => "30m"
     ),
     array(
         'create' => true,
-        'project' => "15419",
-        'summary' => "DESDE SCRIPT test 100",
-        'description' => "DESDE SCRIPT test 100 des",
-        "assignee" => "5d1a2f38f4228c0d18a0b34e",
+        'project' => "15773",
+        'summary' => "Reuniones de QA/Test de cambios realizados",
+        'description' => "Reuniones de QA/Test de cambios realizados",
+        "assignee" => "5d35deb94fa5500c42b699ff",
         "hours" => "1h"
     )
 );
