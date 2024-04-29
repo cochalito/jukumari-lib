@@ -31,15 +31,21 @@ class Jira extends CallApi
     {
         try {
             $dataTicket = (array)$dataTicket;
+            $dataProject = (array)$dataTicket['project'];
             $description = $this->createTemplate($dataTicket['description']);
             $dataTicket = array(
                 'fields' => array(
-                    'project'       => array('id' => (int)$dataTicket['project']),
-                    'summary'       => $dataTicket['summary'],
+                    'project'       => array('id' => $dataProject['value']),
+                    'summary'       => '[' . strtoupper($dataProject['content']) . '] ' . $dataTicket['summary'],
                     'description'   => $description,
                     'issuetype'     => array('name' => 'Task'),
                     'assignee'      => array('id' => $dataTicket['assignee']),
-                    'timetracking'  => array('originalEstimate' => $dataTicket['hours'], 'remainingEstimate' => '0h')
+                    'timetracking'  => array('originalEstimate' => $dataTicket['hours'], 'remainingEstimate' => '0h'),
+                    'duedate'       => '2024-05-06',
+                    //'customfield_10006'  => array([(int)$dataTicket['storyPoints']]),
+                    'labels' => [
+                        $dataTicket['label']
+                    ]
                 )
             );
             $resp = $this->postTicket($dataTicket);
