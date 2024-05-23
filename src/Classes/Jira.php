@@ -60,10 +60,11 @@ class Jira extends CallApi
     public function createTemplate($description)
     {
         try {
-            $body = " \n{color:#6554C0}*[ Ticket created By Jukumari Process ]*{color}";
+            //$body = " \n{color:#6554C0}*[ Ticket created By Jukumari Process ]*{color}";
             //$description .= "\n" . 'Project: *' . $dataTicket['PRO_BASECAMP_NAME'] . '*';
             //$description .= "\n" . 'Reporter: *' . $dataTicket['TIC_BASECAMP_AUTHOR_NAME'] . '*';
-            $body .= "\n\n" . $description;
+            $body = $description;
+            $body .= "\n\n" . '*Jukumari Team*';
 
             /*
             $link  = 'https://colosa.basecamphq.com/projects/' . $dataTicket['PRO_BASECAMP_ID'];
