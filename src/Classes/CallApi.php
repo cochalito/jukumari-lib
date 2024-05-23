@@ -4,14 +4,28 @@ namespace ProcessMaker\JukumariLib\Classes;
 
 class CallApi
 {
-    /*
-    public function __construct($dataJira)
+    public function executeEndPointBanner($url, $header, $method, $arrayPost = array())
     {
-        $this->server = $dataJira['SERVER'] ?? $this->server;
-        $this->user = $dataJira['JIRA_USER'] ?? $this->user;
-        $this->pass = $dataJira['JIRA_PASS'] ?? $this->pass;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_ENCODING, '');
+        curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 0);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        if ($method == 'POST') {
+            $postFields = json_encode($arrayPost);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $postFields);
+            curl_setopt($curl, CURLOPT_POST, TRUE);
+        }
+
+        $data = curl_exec($curl);
+        curl_close($curl);
+        return $data;
     }
-    */
 
     public function executeEndPointBasicAuth($uri, $method = 'GET', $data = array())
     {
@@ -43,7 +57,6 @@ class CallApi
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);
 
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_USERPWD, $sUserPass);
             curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 

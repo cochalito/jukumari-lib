@@ -32,6 +32,7 @@ class Jira extends CallApi
         try {
             $dataTicket = (array)$dataTicket;
             $dataProject = (array)$dataTicket['project'];
+            $duedate = !empty($dataTicket['dueDate']) ? $dataTicket['dueDate'] : '2024-06-07';
             $description = $this->createTemplate($dataTicket['description']);
             $dataTicket = array(
                 'fields' => array(
@@ -41,13 +42,14 @@ class Jira extends CallApi
                     'issuetype'     => array('name' => 'Task'),
                     'assignee'      => array('id' => $dataTicket['assignee']),
                     'timetracking'  => array('originalEstimate' => $dataTicket['hours'], 'remainingEstimate' => '0h'),
-                    'duedate'       => '2024-05-06',
+                    'duedate'       => $duedate,
                     //'customfield_10006'  => array([(int)$dataTicket['storyPoints']]),
                     'labels' => [
                         $dataTicket['label']
                     ]
                 )
             );
+            //return $dataTicket;
             $resp = $this->postTicket($dataTicket);
             return $resp;
         } catch (Exception $error) {
@@ -77,6 +79,58 @@ class Jira extends CallApi
             return $body;
         } catch (Exception $error) {
             exit('An error occurred in the execution of function Jira::createTemplate => ' . $error->getMessage());
+        }
+    }
+
+    public function searchTicket($jql)
+    {
+        try {
+            $jql = str_replace(" ", "+", $jql);
+            $uri = 'rest/api/2/search?jql=' . $jql ;
+            $respEndPoint = $this->executeEndPointBasicAuth($uri, 'GET');
+            $dataTicket = json_decode($respEndPoint['response']);
+            return $dataTicket;
+        } catch (Exception $error) {
+            exit('An error occurred in the execution of function Jira::postTicket => ' . $error->getMessage());
+        }
+    }
+
+    public function editStatusTicket($keyTicket, $newStatus)
+    {
+        try {
+            $uri = 'rest/api/2/issue/' . $keyTicket . '/transitions';
+            switch ($newStatus) {
+                case 're-open':
+                    $idStatus = '941';
+                    break;
+                case 'finished':
+                default:
+                    $idStatus = '881';
+                    break;
+            }
+            $dataTicket = array(
+                'transition' => array(
+                    'id' => $idStatus
+                )
+            );
+            $respEndPoint = $this->executeEndPointBasicAuth($uri, 'POST', $dataTicket);
+            $dataTicket = json_decode($respEndPoint['response']);
+            return $dataTicket;
+        } catch (Exception $error) {
+            exit('An error occurred in the execution of function Jira::postTicket => ' . $error->getMessage());
+        }
+    }
+
+    public function editTicket($keyTicket, $dataTicket)
+    {
+        try {
+            $uri = 'rest/api/2/issue/' . $keyTicket;
+
+            $respEndPoint = $this->executeEndPointBasicAuth($uri, 'PUT', $dataTicket);
+            $dataTicket = json_decode($respEndPoint['response']);
+            return $dataTicket;
+        } catch (Exception $error) {
+            exit('An error occurred in the execution of function Jira::postTicket => ' . $error->getMessage());
         }
     }
 

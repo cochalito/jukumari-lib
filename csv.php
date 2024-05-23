@@ -8,13 +8,20 @@ require_once 'vendor/autoload.php';
 $test = array();
 if (($gestor = fopen("horas.csv", "r")) !== FALSE) {
     while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) {
+        $projectContent = explode("[", $datos[1]);
+        $projectContent = explode("]", $projectContent[1]);
         $temp = array(
             'create' => true,
-            'project' => $datos[0],
-            'summary' => $datos[1],
+            'project' => array(
+                'value' => $datos[0],
+                'content' => trim($projectContent[0]),
+            ),
+            'summary' => trim($projectContent[1]),
             'description' => $datos[2],
             'assignee' => $datos[3],
-            'hours' => $datos[4]
+            'hours' => $datos[4],
+            'storyPoints' => "1",
+            'label' => "PS_Investment"
         );
         $test[] = $temp;
     }
